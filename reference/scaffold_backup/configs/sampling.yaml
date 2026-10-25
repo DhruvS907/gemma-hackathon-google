@@ -1,0 +1,14 @@
+# =============================================================================
+# SAMPLING / GENERATION PARAMETERS — SCAFFOLD
+# -----------------------------------------------------------------------------
+# !include'd by agent.yaml (and sub-agent YAMLs).
+# Low temperature = more reliable tool-call formatting and deterministic edits.
+# =============================================================================
+
+temperature: 0.2
+top_p: 0.9
+top_k: 40
+max_output_tokens: 16384
+thinking_config:
+  thinking_budget: 4096
+  include_thoughts: true

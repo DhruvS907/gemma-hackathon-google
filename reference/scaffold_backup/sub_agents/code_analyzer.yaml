@@ -1,0 +1,27 @@
+# =============================================================================
+# SUB-AGENT: READ-ONLY CODE ANALYZER — SCAFFOLD
+# -----------------------------------------------------------------------------
+# Exposed to the root coder as an AgentTool. Does read-only comprehension
+# (graph tools + file reads) and returns a distilled summary, keeping the
+# coder's context clean.
+#
+# May use a DIFFERENT adapter than the root agent (e.g. tool_lora),
+# but MUST use the same base model.
+# =============================================================================
+
+name: code_analyzer
+model: gemma-4-12b-it-qat-w4a16-ct
+adapter: tool_lora                        # optional; remove if not shipping one
+description: >
+  Read-only repository analyst. Given a symbol or question, explores the code
+  graph and source, and returns a concise structured summary (callers, callees,
+  related code, likely edit locations). Never modifies files.
+
+instruction: !include prompts/analyzer.md
+
+tools:
+  - read_file
+  - get_code_neighbors
+  - search_similar_code
+  - get_code_subgraph
+  - run_command        # read-only usage (grep, git log) — enforced by prompt

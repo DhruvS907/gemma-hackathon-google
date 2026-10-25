@@ -1,0 +1,45 @@
+# =============================================================================
+# ROOT AGENT CONFIG — SCAFFOLD
+# -----------------------------------------------------------------------------
+# ⚠️ This is a scaffold written from the official competition spec.
+#    Replace with the real sample_submission/agent.yaml once downloaded from
+#    the Kaggle dataset, then apply your optimizations on top.
+#
+# Rules:
+#   - Must be at the ROOT of submission.zip
+#   - All agents/sub-agents must use the SAME base model
+#   - Only the 4 allowed Gemma 4 checkpoints
+#   - Tools: only harness tools + your own sub_agents (agent_tool)
+#   - !include paths resolve relative to THIS file's directory
+# =============================================================================
+
+name: coder
+model: gemma-4-12b-it-qat-w4a16-ct        # one of the 4 allowed checkpoints
+adapter: main_lora                          # optional; remove line if no adapter
+description: >
+  Autonomous software engineering agent. Navigates the repository at /workspace,
+  diagnoses the issue, writes a minimal correct patch, verifies it, and submits.
+
+instruction: !include prompts/system.md
+
+# Generation parameters (kept in a separate file for easy tuning)
+generate_content_config: !include configs/sampling.yaml
+
+# Harness tools available to this agent
+tools:
+  - run_command
+  - read_file
+  - edit_file
+  - write_file
+  - submit_patch
+  - get_status
+  - get_code_neighbors
+  - search_similar_code
+  - get_code_subgraph
+  # Skill tools (if skills/ is present)
+  - run_skill_script
+  - load_skill_resource
+  # Read-only analyzer exposed as a tool (isolates its context from the coder)
+  - agent_tool:
+      config_path: sub_agents/code_analyzer.yaml
+      skip_summarization: true

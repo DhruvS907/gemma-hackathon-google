@@ -1,0 +1,21 @@
+# =============================================================================
+# EVALUATION CONFIG — read by the harness (Cell 5 of the notebook)
+# -----------------------------------------------------------------------------
+# Defaults shown here match the notebook's fallbacks. Tune for budget:
+# you have 12 HOURS TOTAL across all tasks (sandbox setup included,
+# patch validation time excluded).
+# =============================================================================
+
+evaluation:
+  # Per-command timeout in Phase 1 (seconds). Default 300.
+  timeout_seconds: 300
+
+  # Hard cap on tool calls per task. Default 100 (sample submission uses 10).
+  max_tool_calls: 100
+
+  # Hard cap on agent-loop wall-clock time per task, in minutes. Default 60.
+  # (Sample submission uses 1.) Container setup time is NOT counted.
+  max_time_minutes: 60.0
+
+  # Cap on LLM reasoning turns per task. Default 500 (sample uses 50).
+  max_turns: 500
