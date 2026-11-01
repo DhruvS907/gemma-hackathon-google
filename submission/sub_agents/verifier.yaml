@@ -1,0 +1,7 @@
+name: verifier_agent
+description: Runs the single targeted test from a repairer report; reports PASS/FAIL/PRE_EXISTING with evidence.
+model: gemma-4-12b-it-qat-w4a16-ct
+instruction: !include ../prompts/verifier.md
+tools:
+  - run_command
+generate_content_config: !include ../configs/sampling.yaml

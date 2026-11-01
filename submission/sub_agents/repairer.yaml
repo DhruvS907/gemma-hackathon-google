@@ -1,0 +1,9 @@
+name: repairer_agent
+description: Applies the minimal source fix from a localizer report; reports CHANGED/DIFF SUMMARY/TEST.
+model: gemma-4-12b-it-qat-w4a16-ct
+instruction: !include ../prompts/repairer.md
+tools:
+  - read_file
+  - edit_file
+  - write_file
+generate_content_config: !include ../configs/sampling.yaml
