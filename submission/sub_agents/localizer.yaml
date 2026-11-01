@@ -1,11 +1,13 @@
 name: localizer_agent
-description: Read-only fault localizer. Finds the root-cause file, lines, and minimal change; reports FILE/LINES/ROOT CAUSE/MINIMAL CHANGE/TEST.
+description: Read-only fault localizer. Finds the root cause and every file that must change; reports ROOT CAUSE / FINDINGS / TEST.
 model: gemma-4-12b-it-qat-w4a16-ct
 instruction: !include ../prompts/localizer.md
+output_key: localizer_report
 tools:
   - search_similar_code
   - get_code_neighbors
-  - get_code_subgraph
   - read_file
   - run_command
+skills:
+  - skills/bfs_node_check
 generate_content_config: !include ../configs/sampling.yaml
