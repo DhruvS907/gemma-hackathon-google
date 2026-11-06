@@ -9,5 +9,5 @@ tools:
   - read_file
   - run_command
 skills:
-  - skills/bfs_node_check
+  - skills/bfs-node-check
 generate_content_config: !include ../configs/sampling.yaml

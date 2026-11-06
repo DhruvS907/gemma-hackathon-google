@@ -1,9 +1,9 @@
 ---
-name: bfs_node_check
+name: bfs-node-check
 description: BFS over the call graph from a symbol; returns the induced subgraph (definition, callers, callees) with code for every node.
 ---
 
-# bfs_node_check
+# bfs-node-check
 
 Scripts available to the agent via `run_skill_script`:
 

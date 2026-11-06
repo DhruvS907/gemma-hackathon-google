@@ -43,3 +43,5 @@ Thumbs.db
 .env.*
 *.pem
 *.key
+# --- Stale root build artifact (real zips go in submissions/) ---
+/submission.zip
